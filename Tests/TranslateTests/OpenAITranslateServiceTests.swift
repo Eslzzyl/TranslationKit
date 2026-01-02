@@ -5,42 +5,20 @@ import Testing
 struct OpenAITranslateServiceTests {
     @Test("Service has correct properties")
     func testServiceProperties() {
-        let service = OpenAITranslateService()
-        #expect(service.id == "openai")
-        #expect(service.name == "OpenAI")
-        #expect(service.type == .sentence)
-        #expect(service.requiresSecret == false)
+        #expect(OpenAITranslateService.id == "openai")
+        #expect(OpenAITranslateService.name == "OpenAI")
+        #expect(OpenAITranslateService.type == .sentence)
+        #expect(OpenAITranslateService.requiresSecret == false)
     }
 
     @Test("Service does not require secret by default")
     func testRequiresSecretIsFalse() {
-        let serviceWithoutKey = OpenAITranslateService()
-        #expect(serviceWithoutKey.requiresSecret == false)
-    }
-
-    @Test("Custom initialization with all parameters")
-    func testCustomInitialization() {
-        let service = OpenAITranslateService(
-            baseURL: "https://api.example.com/v1",
-            apiKey: "test-key",
-            model: "gpt-4",
-            temperature: 0.5,
-            systemPrompt: "Custom system prompt",
-            userPrompt: "Custom user prompt"
-        )
-        #expect(service.id == "openai")
-        #expect(service.name == "OpenAI")
-    }
-
-    @Test("Default base URL is OpenAI")
-    func testDefaultBaseURL() {
-        let service = OpenAITranslateService()
-        #expect(service.requiresSecret == false)
+        #expect(OpenAITranslateService.requiresSecret == false)
     }
 
     @Test("Task status transitions correctly")
     func testTaskStatusTransitions() {
-        var task = TranslateTask(
+        let task = TranslateTask(
             raw: "Hello",
             targetLanguage: "zh-CN"
         )

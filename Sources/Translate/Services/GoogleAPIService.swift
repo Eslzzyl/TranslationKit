@@ -1,10 +1,12 @@
 import Foundation
 
 public final class GoogleAPITranslateService: BaseTranslateService, TranslateService, @unchecked Sendable {
-    public let id = "googleapi"
-    public let name: String? = "Google Translate API"
-    public let type: ServiceType = .sentence
-    public let requiresSecret: Bool = false
+    public static let id = "googleapi"
+    public static let name: String? = "Google Translate API"
+    public static let type: ServiceType = .sentence
+    public static let requiresSecret: Bool = false
+    public static let defaultSecret: String? = nil
+    public static let secretValidator: (@Sendable (String?) -> SecretValidationResult)? = nil
 
     public override init(networkClient: NetworkClient = NetworkClient()) {
         super.init(networkClient: networkClient)

@@ -69,10 +69,12 @@ public final class OpenAITranslateService: BaseTranslateService, TranslateServic
         self.userPrompt = userPrompt ?? Self.defaultUserPrompt
     }
 
-    public var id: String { "openai" }
-    public var name: String? { "OpenAI" }
-    public var type: ServiceType { .sentence }
-    public var requiresSecret: Bool { false }
+    public static let id: String = "openai"
+    public static let name: String? = "OpenAI"
+    public static let type: ServiceType = .sentence
+    public static let requiresSecret: Bool = false
+    public static let defaultSecret: String? = nil
+    public static let secretValidator: (@Sendable (String?) -> SecretValidationResult)? = nil
 
     public func translate(_ task: inout TranslateTask) async throws {
         task.status = .processing

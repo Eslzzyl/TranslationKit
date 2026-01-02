@@ -12,6 +12,8 @@ public enum TranslateError: Error, LocalizedError, Sendable {
     case rateLimited
     case serverError
     case apiError(String)
+    case missingSecret
+    case invalidSecretFormat(String)
 
     public var errorDescription: String? {
         switch self {
@@ -37,6 +39,10 @@ public enum TranslateError: Error, LocalizedError, Sendable {
             return "Server error"
         case .apiError(let message):
             return "API error: \(message)"
+        case .missingSecret:
+            return "API secret is required but was not provided"
+        case .invalidSecretFormat(let message):
+            return "Invalid secret format: \(message)"
         }
     }
 }

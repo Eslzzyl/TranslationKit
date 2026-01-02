@@ -15,7 +15,7 @@ public class BaseTranslateService: @unchecked Sendable {
         tk: String
     ) throws -> URL {
         var urlComponents = URLComponents(string: baseURL + "/translate_a/single")
-        guard let components = urlComponents else {
+        guard urlComponents != nil else {
             throw TranslateError.invalidURL
         }
 

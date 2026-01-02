@@ -8,7 +8,7 @@ zotero-pdf-translate 是一个基于 TypeScipt 的 Zotero 软件插件，其中�
 
 # 要求
 
-使用最新的 Swift 特性和语法。此项目使用 Swift Testing 作为测试框架。
+使用最新的 Swift 特性和语法。此项目使用 Swift Testing 作为测试框架。在实现某个特定的翻译服务时，仅测试这个服务，不要测试其他服务。
 
 仔细参考 zotero-pdf-translate 项目中的实现。
 
@@ -24,7 +24,12 @@ Translate/
 ├── README.md                        # 项目说明
 ├── Docs/                            # 文档目录
 │   ├── README.md                    # 快速开始
-│   ├── Services.md                  # 服务使用指南
+│   ├── Services.md                  # 服务使用指南（索引）
+│   ├── Services/
+│   │   ├── GoogleTranslate.md       # Google 网页翻译
+│   │   ├── GoogleTranslateAPI.md    # Google API 端点
+│   │   ├── OpenAI.md                # OpenAI 兼容服务
+│   │   └── BaiduTranslate.md        # 百度翻译
 │   └── API.md                       # API 参考
 ├── Sources/Translate/
 │   ├── Core/
@@ -40,6 +45,7 @@ Translate/
 │   │   └── NetworkClient.swift      # 网络请求封装
 │   ├── Services/
 │   │   ├── BaseTranslateService.swift     # 基础服务类
+│   │   ├── BaiduTranslateService.swift    # 百度翻译
 │   │   ├── GoogleAPIService.swift         # Google API 变体
 │   │   ├── GoogleTranslateService.swift   # Google 网页翻译
 │   │   └── OpenAITranslateService.swift   # OpenAI 兼容 LLM 翻译
@@ -50,6 +56,8 @@ Translate/
     ├── GoogleTranslateIntegrationTests.swift   # Google 集成测试
     ├── OpenAITranslateServiceTests.swift       # OpenAI 服务单元测试
     ├── OpenAITranslateIntegrationTests.swift   # OpenAI 集成测试
+    ├── BaiduTranslateServiceTests.swift        # 百度翻译测试
+    ├── BaiduTranslateIntegrationTests.swift    # 百度翻译集成测试
     └── LanguageMapTests.swift                  # 语言映射测试
 ```
 
@@ -108,6 +116,43 @@ struct GoogleSignature {
 | Google Translate | `google` | sentence | 否 |
 | Google Translate API | `googleapi` | sentence | 否 |
 | OpenAI (兼容接口) | `openai` | sentence | 可选 |
+| Baidu Translate | `baidu` | sentence | 是 |
+
+## 百度翻译服务
+
+`BaiduTranslateService` 使用百度翻译开放平台 API：
+
+```swift
+let baidu = BaiduTranslateService()
+var task = TranslateTask(
+    raw: "Hello, world!",
+    sourceLanguage: "en",
+    targetLanguage: "zh-CN",
+    secret: "your_appid#your_key"
+)
+```
+
+配置项：
+
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| `secret` | API 密钥，格式 `AppID#Key#Action(optional)` | `appid#key` |
+
+密钥格式说明：
+- `AppID`：百度翻译开放平台应用 ID
+- `Key`：百度翻译开放平台应用密钥
+- `Action`：(可选) 翻译类型，`0` 表示普通翻译，`1` 表示专业翻译
+
+百度语言代码映射：
+
+| 原始代码 | 百度代码 |
+|----------|----------|
+| `zh-CN` | `zh` |
+| `zh-TW` | `cht` |
+| `ja` | `jp` |
+| `ko` | `kor` |
+| `fr` | `fra` |
+| `es` | `spa` |
 
 ## OpenAI 兼容服务
 
@@ -158,6 +203,7 @@ swift test --filter GoogleTranslateIntegrationTests  # Google 集成测试
 swift test --filter GoogleSignatureTests  # Google 签名测试
 swift test --filter GoogleTranslateServiceTests  # Google 服务测试
 swift test --filter LanguageMapTests  # 语言映射测试
+swift test --filter BaiduTranslateServiceTests  # 百度翻译测试
 
 # 按标签运行测试
 swift test --list-tests  # 列出所有可用测试
@@ -177,6 +223,7 @@ open Package.swift
 | `OpenAITranslateServiceTests.swift` | OpenAI 服务属性、初始化测试 |
 | `OpenAITranslateIntegrationTests.swift` | OpenAI 实际翻译测试（需要 API Key） |
 | `LanguageMapTests.swift` | 语言代码映射测试 |
+| `BaiduTranslateServiceTests.swift` | 百度翻译服务属性、密钥验证、语言映射测试 |
 
 ## 集成测试示例
 

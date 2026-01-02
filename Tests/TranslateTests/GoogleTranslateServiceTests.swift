@@ -4,18 +4,16 @@ import Testing
 struct GoogleTranslateServiceTests {
     @Test("Service has correct properties")
     func testServiceProperties() {
-        let service = GoogleTranslateService()
-        #expect(service.id == "google")
-        #expect(service.type == .sentence)
-        #expect(service.requiresSecret == false)
+        #expect(GoogleTranslateService.id == "google")
+        #expect(GoogleTranslateService.type == .sentence)
+        #expect(GoogleTranslateService.requiresSecret == false)
     }
 
     @Test("API service has correct properties")
     func testAPIServiceProperties() {
-        let service = GoogleAPITranslateService()
-        #expect(service.id == "googleapi")
-        #expect(service.type == .sentence)
-        #expect(service.requiresSecret == false)
+        #expect(GoogleAPITranslateService.id == "googleapi")
+        #expect(GoogleAPITranslateService.type == .sentence)
+        #expect(GoogleAPITranslateService.requiresSecret == false)
     }
 
     @Test("Task status transitions correctly")
