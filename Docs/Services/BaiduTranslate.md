@@ -4,7 +4,7 @@
 
 ## 申请流程
 
-1. 访问 [百度翻译开放平台](http://api.fanyi.baidu.com/)
+1. 访问 [百度翻译开放平台](https://fanyi-api.baidu.com/)
 2. 注册开发者账号
 3. 创建翻译应用，获取 APPID 和密钥
 4. 开通通用翻译 API 服务
