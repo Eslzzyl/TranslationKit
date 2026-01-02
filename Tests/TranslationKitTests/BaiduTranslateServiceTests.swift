@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import Translate
+@testable import TranslationKit
 
 @Suite("Baidu Translate Service Tests")
 struct BaiduTranslateServiceTests {

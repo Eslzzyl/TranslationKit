@@ -5,7 +5,7 @@
 ## 基本用法
 
 ```swift
-import Translate
+import TranslationKit
 
 func translateWithGoogle() async {
     let service = GoogleTranslateService()

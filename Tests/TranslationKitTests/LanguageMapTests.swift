@@ -1,5 +1,5 @@
 import Testing
-@testable import Translate
+@testable import TranslationKit
 
 struct LanguageMapTests {
     @Test("Language map returns original code for unmapped values")

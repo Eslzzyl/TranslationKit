@@ -1,5 +1,5 @@
 import Testing
-@testable import Translate
+@testable import TranslationKit
 
 extension Tag {
     @Tag static var network: Self

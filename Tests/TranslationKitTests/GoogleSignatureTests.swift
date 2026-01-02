@@ -1,5 +1,5 @@
 import Testing
-@testable import Translate
+@testable import TranslationKit
 
 struct GoogleSignatureTests {
     @Test("TL signature generates correct format")

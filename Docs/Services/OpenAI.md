@@ -5,7 +5,7 @@
 ## 基本用法
 
 ```swift
-import Translate
+import TranslationKit
 
 let service = OpenAITranslateService(
     baseURL: "https://api.openai.com/v1",

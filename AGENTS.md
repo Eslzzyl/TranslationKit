@@ -19,7 +19,7 @@ zotero-pdf-translate 是一个基于 TypeScipt 的 Zotero 软件插件，其中�
 ## 目录结构
 
 ```
-Translate/
+TranslationKit/
 ├── Package.swift                    # Swift 包配置
 ├── README.md                        # 项目说明
 ├── Docs/                            # 文档目录
@@ -31,7 +31,7 @@ Translate/
 │   │   ├── OpenAI.md                # OpenAI 兼容服务
 │   │   └── BaiduTranslate.md        # 百度翻译
 │   └── API.md                       # API 参考
-├── Sources/Translate/
+├── Sources/TranslationKit/
 │   ├── Core/
 │   │   ├── Errors.swift             # 错误类型定义
 │   │   ├── LanguageMap.swift        # 语言代码映射
@@ -50,7 +50,7 @@ Translate/
 │   │   ├── GoogleTranslateService.swift   # Google 网页翻译
 │   │   └── OpenAITranslateService.swift   # OpenAI 兼容 LLM 翻译
 │   └── Translate.swift
-└── Tests/TranslateTests/
+└── Tests/TranslationKitTests/
     ├── GoogleSignatureTests.swift              # 签名算法测试
     ├── GoogleTranslateServiceTests.swift       # Google 服务测试
     ├── GoogleTranslateIntegrationTests.swift   # Google 集成测试
@@ -247,7 +247,7 @@ struct GoogleTranslateIntegrationTests {
 # 使用方法
 
 ```swift
-import Translate
+import TranslationKit
 
 func translateExample() async {
     let service = GoogleTranslateService()

@@ -1,6 +1,6 @@
 # 服务使用指南
 
-本文档介绍 Translate 库中支持的各种翻译服务。
+本文档介绍 TranslationKit 库中支持的各种翻译服务。
 
 ## 支持的服务
 
@@ -16,7 +16,7 @@
 ### 使用 Google（无需密钥）
 
 ```swift
-import Translate
+import TranslationKit
 
 let service = GoogleTranslateService()
 var task = TranslateTask(

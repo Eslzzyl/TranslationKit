@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Translate",
+    name: "TranslationKit",
     platforms: [
         .macOS(.v10_15),
         .iOS(.v13),
@@ -11,20 +11,20 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Translate",
-            targets: ["Translate"]
+            name: "TranslationKit",
+            targets: ["TranslationKit"]
         ),
     ],
     targets: [
         .target(
-            name: "Translate",
+            name: "TranslationKit",
             dependencies: [],
-            path: "Sources/Translate"
+            path: "Sources/TranslationKit"
         ),
         .testTarget(
-            name: "TranslateTests",
-            dependencies: ["Translate"],
-            path: "Tests/TranslateTests"
+            name: "TranslationKitTests",
+            dependencies: ["TranslationKit"],
+            path: "Tests/TranslationKitTests"
         ),
     ]
 )

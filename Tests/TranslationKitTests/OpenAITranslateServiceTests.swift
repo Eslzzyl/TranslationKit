@@ -1,5 +1,5 @@
 import Testing
-@testable import Translate
+@testable import TranslationKit
 
 @Suite("OpenAI Translate Service Tests")
 struct OpenAITranslateServiceTests {

@@ -14,7 +14,7 @@
 ### 方式一：使用配置对象
 
 ```swift
-import Translate
+import TranslationKit
 
 let config = BaiduTranslateConfig(appid: "your_appid", key: "your_key")
 let baidu = BaiduTranslateService(config: config)
@@ -101,7 +101,7 @@ let baidu = BaiduTranslateService(config: config)
 ## 完整示例
 
 ```swift
-import Translate
+import TranslationKit
 
 func translateWithBaidu() async {
     // 创建配置

@@ -1,4 +1,4 @@
-# Translate
+# TranslationKit
 
 一个基于现代 Swift 的翻译库，支持多种翻译服务。
 
@@ -20,7 +20,7 @@
 ## 快速开始
 
 ```swift
-import Translate
+import TranslationKit
 
 // 使用 Google 翻译
 let googleService = Translate.google
@@ -41,7 +41,7 @@ let result = try await translate(
 ### Swift Package Manager
 
 ```swift
-.package(url: "https://github.com/your-repo/Translate.git", from: "1.0.0")
+.package(url: "https://github.com/your-repo/TranslationKit.git", from: "1.0.0")
 ```
 
 ## 文档
