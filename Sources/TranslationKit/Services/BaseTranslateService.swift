@@ -51,9 +51,26 @@ public class BaseTranslateService: @unchecked Sendable {
         return url
     }
 
+    func buildPostBody(
+        text: String,
+        sourceLang: String,
+        targetLang: String
+    ) -> [String: Any] {
+        return [
+            "q": text,
+            "client": "at",
+            "sl": sourceLang,
+            "tl": targetLang,
+            "dt": "t",
+            "ie": "UTF-8",
+            "oe": "UTF-8",
+            "dj": "1"
+        ]
+    }
+
     func parseResponse(_ data: Data) throws -> String {
         struct Response: Decodable {
-            let sentences: [[GoogleSentence]]?
+            let sentences: [GoogleSentence]?
         }
 
         struct GoogleSentence: Decodable {
@@ -69,7 +86,7 @@ public class BaseTranslateService: @unchecked Sendable {
 
         var result = ""
         for sentence in sentences {
-            if let trans = sentence[0].trans {
+            if let trans = sentence.trans {
                 result += trans
             }
         }

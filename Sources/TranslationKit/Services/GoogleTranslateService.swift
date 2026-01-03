@@ -13,19 +13,32 @@ public final class GoogleTranslateService: BaseTranslateService, TranslateServic
     }
 
     public func translate(_ task: inout TranslateTask) async throws {
-        let tk = GoogleSignature.generateTK(for: task.raw)
         let sourceLang = LanguageMap.map(task.sourceLanguage ?? "auto")
         let targetLang = LanguageMap.map(task.targetLanguage)
 
-        let url = try buildTranslateURL(
-            baseURL: "https://translate.google.com",
+        let urlString = "https://translate.google.com/translate_a/single"
+        guard let url = URL(string: urlString) else {
+            throw TranslateError.invalidURL
+        }
+
+        let body = buildPostBody(
             text: task.raw,
             sourceLang: sourceLang,
-            targetLang: targetLang,
-            tk: tk
+            targetLang: targetLang
         )
 
-        let (data, response) = try await networkClient.get(url: url)
+        let bodyString = body.map { key, value in
+            let encodedKey = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? key
+            let encodedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "\(value)"
+            return "\(encodedKey)=\(encodedValue)"
+        }.joined(separator: "&")
+        let bodyData = bodyString.data(using: .utf8)
+
+        let (data, response) = try await networkClient.post(
+            url: url,
+            body: bodyData,
+            headers: ["Content-Type": "application/x-www-form-urlencoded;charset=utf-8"]
+        )
 
         guard let httpResponse = response as? HTTPURLResponse else {
             throw TranslateError.invalidResponse
